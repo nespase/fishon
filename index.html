@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fishtocli.online · блог проекта</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace;
+            line-height: 1.6;
+            color: #2c3e50;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f8fafc;
+        }
+        h1 { font-size: 2.5em; margin-bottom: 0; }
+        h2 { 
+            font-size: 1.8em; 
+            margin-top: 2em; 
+            border-bottom: 2px solid #e67e22; 
+            padding-bottom: 5px;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            color: #64748b;
+            margin-top: 5px;
+            border-left: 4px solid #e67e22;
+            padding-left: 15px;
+        }
+        .post {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .post-date {
+            color: #e67e22;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .post-title {
+            font-size: 1.6em;
+            margin: 5px 0 15px 0;
+        }
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        code {
+            background: #e2e8f0;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #cbd5e1;
+            margin: 40px 0;
+        }
+        .changelog-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #e67e22;
+        }
+        .version {
+            font-weight: bold;
+            color: #e67e22;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #e67e22;
+            text-decoration: none;
+        }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>fishtocli.online</h1>
+    <div class="subtitle">история, гайды, обновления</div>
+    <p><a href="https://fishtocli.ru">← на основной сайт</a></p>
+
+    <hr>
+
+    <div class="post">
+        <div class="post-date">24 февраля 2026</div>
+        <div class="post-title">Как появился fishtocli</div>
+        <p>Сидел, смотрел на погоду за окном и думал: "А клюёт ли сегодня?" В телефоне — куча приложений с прогнозом клёва, но все какие-то... не те. Хотелось простоты: открыл терминал, выбрал место — и готово.</p>
+        <p>Так и родилась идея bash-скрипта, который берёт реальную погоду с open-meteo, анализирует давление (и его перепады!) и выдаёт вердикт по каждой рыбе. Без API-ключей, без регистраций, без смс.</p>
+        <p>Первая версия появилась через пару часов. Потом ещё добавил кэш давления, потом приманки, потом тактику... А дальше — понеслось.</p>
+    </div>
+
+    <h2>Гайд: установка на Windows</h2>
+    <div class="post">
+        <p>Скрипт работает на Linux/macOS, но на Windows его тоже можно запустить через WSL.</p>
+        
+        <h3>Шаг 1. Установка WSL</h3>
+        <pre>wsl --install</pre>
+        <p>Эта команда установит WSL2 и Ubuntu по умолчанию. После установки перезагрузи компьютер.</p>
+
+        <h3>Шаг 2. Запуск Ubuntu</h3>
+        <p>Найди в меню "Ubuntu" и запусти. При первом запуске создай пользователя и пароль.</p>
+
+        <h3>Шаг 3. Установка зависимостей</h3>
+        <pre>sudo apt update
+sudo apt install curl python3 bc git</pre>
+
+        <h3>Шаг 4. Скачивание скрипта</h3>
+        <pre>git clone https://github.com/nespaset/fish2cli
+cd fish2cli
+chmod +x fish2cli.sh</pre>
+
+        <h3>Шаг 5. Запуск</h3>
+        <pre>./fish2cli.sh</pre>
+
+        <p>Готово! Теперь у тебя в Windows работает настоящий рыбацкий bash-скрипт.</p>
+    </div>
+
+    <h2>Changelog</h2>
+    
+    <div class="changelog-item">
+        <span class="version">v1.1</span> (24 февраля 2026)
+        <ul>
+            <li>Добавлена проверка зависимостей (python3, bc, curl)</li>
+            <li>Исправлен расчёт DIFF (убрал xargs)</li>
+            <li>Добавлены новые локации: Казань, Самара, Питер, Мурманск, Тюмень, Сургут, Новосибирск, Красноярск</li>
+            <li>Теперь скрипт работает на 16 городах</li>
+        </ul>
+    </div>
+
+    <div class="changelog-item">
+        <span class="version">v1.0</span> (23 февраля 2026)
+        <ul>
+            <li>Первый публичный релиз</li>
+            <li>8 базовых локаций</li>
+            <li>Логика для 7 видов рыб</li>
+            <li>Кэширование давления в /tmp/</li>
+            <li>Цветной вывод</li>
+        </ul>
+    </div>
+
+    <h2>Планы</h2>
+    <ul>
+        <li>Добавить больше рыб (жерех, голавль, язь)</li>
+        <li>Сделать график давления в консоли</li>
+        <li>Прогноз на 3 дня вперёд</li>
+        <li>Сохранение избранных локаций</li>
+        <li>Веб-версия (совсем потом)</li>
+    </ul>
+
+    <h2>Как помочь проекту</h2>
+    <ul>
+        <li>Предложи новые локации в Issues на GitHub</li>
+        <li>Допиши логику для других рыб</li>
+        <li>Улучши алгоритмы клёва</li>
+        <li>Расскажи о проекте на рыболовных форумах</li>
+    </ul>
+
+    <hr>
+    <p style="text-align: center; color: #64748b;">fishtocli.online · история и гайды</p>
+</body>
+</html>
